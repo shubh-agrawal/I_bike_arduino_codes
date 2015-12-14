@@ -1,7 +1,7 @@
 void setup()
 {
   pinMode(8,OUTPUT);  //pin 8 for direction pin
-  pinMode(9,OUTPUT); //pin 11 for pulse pin
+  pinMode(11,OUTPUT); //pin 11 for pulse pin
   digitalWrite(8,LOW); 
   unsigned long anglespeed(unsigned long ,int );
   void stopmotor();
@@ -15,9 +15,9 @@ void anglespeed(unsigned long noofrev, int rpm) //function to cover specified nu
   } //to avoid any chance of error
   for(unsigned long i=0;i<(noofrev*1800);i++) 
   {
-    digitalWrite(9,HIGH);
+    digitalWrite(11,HIGH);
     delay(33-3*rpm); //0.2 degrees per increment,  3.33 seconds delay for 10rpm
-    digitalWrite(9,LOW);
+    digitalWrite(11,LOW);
     delayMicroseconds(5);
   }
 }
@@ -63,9 +63,10 @@ void godistance(int a, unsigned long distance) //function to make the motor move
  
   void loop()
 {
-  godistance(1,376);
-  delay(3000); //3 seconds delay is necessary for ompensating for lag between any two commands to the motor
-  godistance(0,378);
+  anglespeed( 20 , 5 );
+  //godistance(1,376);
+  //delay(3000); //3 seconds delay is necessary for ompensating for lag between any two commands to the motor
+  //godistance(0,378);
   while(1)
   {
   stalltest();
